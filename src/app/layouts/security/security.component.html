@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-8 p-0 d-lg-block d-none">
+            <div class="vh-100 bg-cover" style="background-image: url({{imgBkg}});"></div>
+        </div>
+        <!-- /.col-lg-8 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container-fluid -->

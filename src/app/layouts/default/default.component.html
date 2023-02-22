@@ -1,4 +1,8 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<!-- <app-header></app-header> -->
+<div>
+    <app-sidebar style="width:250px;" class="border-end vh-100 position-fixed bg-white"></app-sidebar>
+    <main style="margin-left: 250px;">
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </main>
+</div>

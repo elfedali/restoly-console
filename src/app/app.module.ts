@@ -13,6 +13,7 @@ import { ForgotPasswordComponent } from './modules/forgot-password/forgot-passwo
 import { PostsComponent } from './modules/posts/posts.component';
 import { DefaultModule } from './layouts/default/default.module';
 import { SecurityModule } from './layouts/security/security.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SecurityModule } from './layouts/security/security.module';
     BrowserModule,
     AppRoutingModule,
     DefaultModule,
-    SecurityModule
+    SecurityModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
