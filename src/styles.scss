@@ -1,31 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
 $body-bg: #f9fbfd;
+$font-family-sans-serif: "Manrope", sans-serif;
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 
 // global styles
-.bg-cover{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.bg-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.bg-cover-top{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
+.bg-cover-top {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
 }
-.bg-cover-bottom{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
+.bg-cover-bottom {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
-.bg-cover-left{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: left;
+.bg-cover-left {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
 }
-.bg-cover-right{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: right;
+.bg-cover-right {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
 }

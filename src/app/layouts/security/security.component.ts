@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent {
-  imgBkg: string = 'assets/images/auth/bkg1.jpeg';
+  imgBkg: string = 'assets/images/auth/login.svg';
 
 }

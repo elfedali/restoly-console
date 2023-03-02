@@ -1,1 +1,54 @@
-<p>login works!</p>
+<!-- home link -->
+<div class="d-flex justify-content-end py-3 fw-bold">
+    <a routerLink="/" class="text-decoration-none" style="font-size: 1.5rem">
+        <!-- bootstrap svg close-->
+        <i class="bi bi-x-circle"></i>
+    </a>
+</div>
+<div class="p-4">
+    <!-- logo -->
+    <div class="mb-3">
+        <a routerLink="/">
+            <img src="assets/images/logo.svg" alt="logo" width="60" height="60" />
+        </a>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <h1 class="fw-normal h2">Welcome to the app</h1>
+            <p>
+                <small class="text-muted">Please login to continue</small>
+            </p>
+            <!-- alreadyLoggedIn -->
+            <div *ngIf="alreadyLoggedIn">
+                <div class="alert alert-danger" role="alert">
+                    You are already logged in as <strong>{{ user?.name }}</strong>.<br />
+                    <a routerLink="/dashboard">Go to dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" formControlName="email" placeholder="Email" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <div class="d-flex justify-content-between">
+                <label for="password" class="form-label">Password</label>
+                <a routerLink="/auth/forgot-password">Forgot password?</a>
+            </div>
+
+            <input type="password" formControlName="password" placeholder="Password" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+
+        <div class="mb-3">
+            Don't have an account?
+            <a routerLink="/auth/register">Register</a>
+        </div>
+    </form>
+</div>
