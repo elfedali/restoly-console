@@ -36,6 +36,30 @@ export class ShopsComponent implements OnInit {
       },
     });
   }
+  firstPage() {
+    if (this.pagination.currentPage <= 1) return;
+    this.pagination.currentPage = 1;
+    this.shopsService.getShops(this.pagination, this.includes).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.shops = res.data;
+        this.pagination = res.meta.page;
+        this.included = res.included;
+      },
+    });
+  }
+  lastPage() {
+    if (this.pagination.currentPage >= this.pagination.lastPage) return;
+    this.pagination.currentPage = this.pagination.lastPage;
+    this.shopsService.getShops(this.pagination, this.includes).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.shops = res.data;
+        this.pagination = res.meta.page;
+        this.included = res.included;
+      },
+    });
+  }
 
   nextPage() {
     if (this.pagination.currentPage >= this.pagination.lastPage) return;

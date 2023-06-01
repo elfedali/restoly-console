@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
-  user: IUser | null = null;
+  user: any = null;
   alreadyLoggedIn = false;
   public backgroundImage =
     'https://images.pexels.com/photos/4081003/pexels-photo-4081003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';

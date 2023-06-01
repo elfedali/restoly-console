@@ -23,10 +23,8 @@
             <div *ngIf="alreadyLoggedIn">
                 <div class="alert alert-danger" role="alert">
                     You are already logged in as <strong>
-
-                        {{ user?.attributes?.firstName + " " +
-                        user?.attributes?.lastName }}
-                    </strong>.<br />
+                        {{ user.email}}
+                    </strong><br />
                     <a routerLink="/dashboard">Go to dashboard</a>
                 </div>
             </div>

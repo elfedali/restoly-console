@@ -54,10 +54,12 @@
                 </div>
                 <!-- /.col -->
                 <div class="col text-end">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary" (click)="previousPage()">Previous</button>
-                        <button type="button" class="btn btn-secondary" (click)="nextPage()">Next</button>
-
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary me-1" (click)="firstPage()">First</button>
+                        <button type="button" class="btn btn-sm btn-primary me-1"
+                            (click)="previousPage()">Previous</button>
+                        <button type="button" class="btn btn-sm btn-primary me-1" (click)="nextPage()">Next</button>
+                        <button type="button" class="btn btn-sm btn-primary me-1" (click)="lastPage()">Last</button>
                     </div>
                 </div>
                 <!-- /.col -->

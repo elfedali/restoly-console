@@ -4,26 +4,29 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-   
-    let login: string = email
+    let login: string = email;
 
-    return this.http.post<any>(environment.API_URL + 'auth/login', { login, password }, environment.httpOptions);
+    return this.http.post<any>(
+      environment.API_URL + 'auth/login',
+      { login, password },
+      environment.httpOptions
+    );
   }
 
   register(name: string, email: string, password: string) {
+    let password_confirmation: string = password;
 
-    let password_confirmation: string = password
-
-    return this.http.post<any>(environment.API_URL + 'auth/register', { name, email, password, password_confirmation }, environment.httpOptions);
+    return this.http.post<any>(
+      environment.API_URL + 'auth/register',
+      { name, email, password, password_confirmation },
+      environment.httpOptions
+    );
   }
 
   logout() {
@@ -31,7 +34,9 @@ export class AuthService {
     localStorage.removeItem('user'); // remove user from local storage to log user out
   }
   me() {
-    return this.http.get<any>(environment.API_URL + 'me', environment.httpOptions);
+    return this.http.get<any>(
+      environment.API_URL + 'me',
+      environment.httpOptions
+    );
   }
-
 }
