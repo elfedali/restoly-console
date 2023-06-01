@@ -3,8 +3,14 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
+$dark : #27374D;
 $body-bg: #f9fbfd;
+$green : #5ed4b4;
+$red: #ee667e;
+$blue : #4883d1;
+
 $font-family-sans-serif: "Manrope", sans-serif;
+$font-size-base: .89rem;
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
 

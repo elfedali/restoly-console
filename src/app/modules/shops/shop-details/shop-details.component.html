@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- if not loading -->
+            <div *ngIf="true">
+                <span class="badge bg-primary">{{ shop.type }}</span>
+                <h1>
+                    {{ shop.attributes.name }}
+                </h1>
+                <p class="text-muted">Slug : {{ shop.attributes.slug }}</p>
+                <div *ngIf="shop.attributes.isEnabled; else disabledBlock">
+                    <span class="badge bg-success">Enabled</span>
+                </div>
+                <ng-template #disabledBlock>
+                    <span class="badge bg-danger">Disabled</span>
+                </ng-template>
+                <div *ngIf="!shop.attributes.isApproved; else approvedBlock">
+                    <span class="badge bg-danger">Not Approved</span>
+                </div>
+                <ng-template #approvedBlock>
+                    <span class="badge bg-success">Approved</span>
+                </ng-template>
+
+                <div *ngIf="!shop.attributes.isEnabled">
+                    <span class="badge bg-danger">Disabled</span>
+                </div>
+
+                <div>
+                    <div class="mb-3">
+                        <!-- <img [src]="shop.attributes.logo" alt="logo" /><br>
+                        <img [src]="shop.attributes.coverPhoto" alt="cover photo" /> -->
+                    </div>
+                    <address>
+                        Address : {{ shop.attributes.address }}<br />
+                        City : {{ shop.attributes.city }}<br />
+                        Zip code : {{ shop.attributes.zipCode }}<br />
+                        Country : {{ shop.attributes.country }}
+                    </address>
+
+                    <div>
+                        createdAt {{ shop.attributes.createdAt | date: 'medium' }}<br />
+                        updatedAt {{ shop.attributes.updatedAt | date: 'medium' }}<br />
+                    </div>
+
+                    <div>
+                        <a [routerLink]="['/shops', shop.id, 'edit']">Edit</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->

@@ -10,6 +10,9 @@ import { ServerErrorComponent } from './modules/server-error/server-error.compon
 import { AccessDeniedComponent } from './modules/access-denied/access-denied.component';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { HomeComponent } from './modules/home/home.component';
+import { LogoutComponent } from './modules/logout/logout.component';
+import { ShopsComponent } from './modules/shops/shops.component';
+import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
 
 const routes: Routes = [
   {
@@ -25,8 +28,17 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
+        path: 'shops',
+        component: ShopsComponent,
+      },
+      {
+        path: 'shops/:id',
+        component: ShopDetailsComponent,
+      },
+      {
         path: 'posts',
         component: PostsComponent,
+        
       },
     ],
   },
@@ -37,6 +49,11 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+      },
+
+      {
+        path: 'logout',
+        component: LogoutComponent,
       },
       {
         path: 'register',

@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-muted">Shops</h2>
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>is Enabled by user</th>
+                        <th>is Approved by Restoly </th>
+                        <th>Created At</th>
+                        <th>Owner</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let shop of shops">
+                        <td>{{ shop.id }}</td>
+                        <td>{{ shop.attributes.name }}</td>
+                        <td>
+                            <div *ngIf="shop.attributes.isEnabled; else disabledBlock">
+                                <span class="badge bg-success">Enabled</span>
+                            </div>
+                            <ng-template #disabledBlock>
+                                <span class="badge bg-danger">Disabled</span>
+                            </ng-template>
+                        </td>
+                        <td>
+                            <div *ngIf="!shop.attributes.isApproved; else approvedBlock">
+                                <span class="badge bg-warning">Not Approved</span>
+                            </div>
+                            <ng-template #approvedBlock>
+                                <span class="badge bg-success">Approved</span>
+                            </ng-template>
+
+                        </td>
+                        <td>{{ shop.attributes.createdAt | date }}</td>
+                        <td>{{ getOwner(shop) }}</td>
+                        <td>
+                            <a [routerLink]="['/shops', shop.id]">Details</a>
+                        </td>
+                    </tr>
+            </table>
+
+            <div class="row">
+                <div class="col">
+                    <div>Page {{ pagination.currentPage }} of {{ pagination.lastPage }} pages</div>
+                    <div>Last page : {{ pagination.lastPage }}</div>
+                    <div>Per page : {{ pagination.perPage }}</div>
+
+
+
+                </div>
+                <!-- /.col -->
+                <div class="col text-end">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary" (click)="previousPage()">Previous</button>
+                        <button type="button" class="btn btn-secondary" (click)="nextPage()">Next</button>
+
+                    </div>
+                </div>
+                <!-- /.col -->
+
+            </div>
+
+        </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

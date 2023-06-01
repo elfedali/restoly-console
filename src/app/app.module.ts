@@ -17,6 +17,10 @@ import { SecurityModule } from './layouts/security/security.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './modules/logout/logout.component';
+import { ShopsComponent } from './modules/shops/shops.component';
+import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ServerErrorComponent,
     NotFoundComponent,
     ForgotPasswordComponent,
-    PostsComponent
+    PostsComponent,
+    LogoutComponent,
+    ShopsComponent,
+    ShopDetailsComponent,
+   
   ],
   imports: [
     BrowserModule,

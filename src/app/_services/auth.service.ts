@@ -13,14 +13,17 @@ export class AuthService {
   ) { }
 
   login(email: string, password: string) {
-    return this.http.post<any>(environment.API_URL + 'login', { email, password }, environment.httpOptions);
+   
+    let login: string = email
+
+    return this.http.post<any>(environment.API_URL + 'auth/login', { login, password }, environment.httpOptions);
   }
 
   register(name: string, email: string, password: string) {
 
     let password_confirmation: string = password
 
-    return this.http.post<any>(environment.API_URL + 'register', { name, email, password, password_confirmation }, environment.httpOptions);
+    return this.http.post<any>(environment.API_URL + 'auth/register', { name, email, password, password_confirmation }, environment.httpOptions);
   }
 
   logout() {
