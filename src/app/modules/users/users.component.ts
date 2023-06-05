@@ -1,14 +1,14 @@
-import { CategoryService } from 'src/app/_services';
+import { UserService } from 'src/app/_services';
 import { IPaginationMeta } from 'src/app/models';
 
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
+  templateUrl: './users.component.html',
 })
-export class CategoryComponent implements OnInit {
-  categories: any[] = [];
+export class UsersComponent implements OnInit {
+  users: any[] = [];
   isLoading = false;
   pagination: IPaginationMeta = {
     currentPage: 1,
@@ -18,14 +18,14 @@ export class CategoryComponent implements OnInit {
   includes = 'owner,images';
   included: any;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.fetchCategories();
+    this.fetchUsers();
   }
 
-  fetchCategories(): void {
-    this.categoryService.getCateories(this.pagination).subscribe({
+  fetchUsers(): void {
+    this.userService.getCateories(this.pagination).subscribe({
       next: (res) => {
         this.handlefetchSuccess(res);
       },
@@ -34,11 +34,11 @@ export class CategoryComponent implements OnInit {
   }
 
   handlefetchSuccess(res: any) {
-    this.categories = res.data;
+    this.users = res.data;
     this.pagination = res.meta.page;
   }
   pageChanged($event: number) {
     this.pagination.currentPage = $event;
-    this.fetchCategories();
+    this.fetchUsers();
   }
 }

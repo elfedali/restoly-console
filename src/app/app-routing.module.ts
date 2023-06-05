@@ -15,6 +15,7 @@ import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { ServerErrorComponent } from './modules/server-error/server-error.component';
 import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
 import { ShopsComponent } from './modules/shops/shops.component';
+import { UsersComponent } from './modules/users/users.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'categories/:id',
         component: CategoryDetailsComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
       },
     ],
   },

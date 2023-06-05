@@ -5,7 +5,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TokenService } from '../../../_services/token.service';
-import { UserService } from '../../../_services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private token: TokenService,
-    private router: Router,
-    private userService: UserService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +41,7 @@ export class LoginComponent implements OnInit {
   checkIfUserIsLoggedIn(): void {
     if (this.token.getAccessToken()) {
       this.alreadyLoggedIn = true;
-      this.user = this.userService.getUser();
+      this.user = this.auth.getUser();
     }
   }
 
@@ -62,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   handleLoginSuccess(res: any): void {
     this.token.setAccessToken(res.access_token, 10);
-    this.userService.setUser(res.data);
+    this.auth.setUser(res.data);
     this.loading = false;
     this.router.navigate(['/']);
   }

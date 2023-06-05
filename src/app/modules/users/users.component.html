@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-4">
+                <h4 class="mb-0">Users</h4>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-title mb-0">This is the list of users</p>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>email</th>
+
+                                <th>Is enabled</th>
+
+                                <th>Created At</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td>{{ user.id }}</td>
+
+                                <td>{{ user.attributes.email }}</td>
+                                <td>
+                                    <div *ngIf="user.attributes.isEnabled; else disabledBlock">
+                                        <span class="badge bg-success">Enabled</span>
+                                    </div>
+                                    <ng-template #disabledBlock>
+                                        <span class="badge bg-danger">Disabled</span>
+                                    </ng-template>
+                                </td>
+
+                                <td>{{ user.attributes.createdAt | date }}</td>
+
+                                <td>
+                                    <a [routerLink]="['/user', user.id]">Details</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col d-flex align-items-end justify-content-end mt-3">
+                            <ngb-pagination [collectionSize]="pagination.total" [(page)]="pagination.currentPage"
+                                aria-label="Default pagination" (pageChange)="pageChanged($event)"
+                                [boundaryLinks]="true" [maxSize]="5" [rotate]="true"></ngb-pagination>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

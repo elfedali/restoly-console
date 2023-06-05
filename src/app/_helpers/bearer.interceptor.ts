@@ -22,6 +22,8 @@ export class BearerInterceptor implements HttpInterceptor {
     // Get the access token from the TokenService
     const accessToken = this.tokenService.getAccessToken();
 
+    console.log('BearerInterceptor', accessToken);
+
     // Clone the request and add the Authorization header with the bearer token
     const modifiedRequest = request.clone({
       setHeaders: {

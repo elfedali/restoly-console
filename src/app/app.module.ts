@@ -19,6 +19,7 @@ import { RegisterComponent } from './modules/register/register.component';
 import { ServerErrorComponent } from './modules/server-error/server-error.component';
 import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
 import { ShopsComponent } from './modules/shops/shops.component';
+import { UsersComponent } from './modules/users/users.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ShopsComponent } from './modules/shops/shops.component';
     ShopDetailsComponent,
     CategoryComponent,
     CategoryDetailsComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

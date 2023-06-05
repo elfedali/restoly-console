@@ -25,9 +25,10 @@ export class TokenService {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const expiration = localStorage.getItem(EXPIRATION_KEY);
 
-    if (!token || !expiration || this.isTokenExpired(expiration)) {
-      return null;
-    }
+    // TODO: Uncomment this code to check if the token has expired.
+    // if (!token || !expiration || this.isTokenExpired(expiration)) {
+    //   return null;
+    // }
 
     return token;
   }

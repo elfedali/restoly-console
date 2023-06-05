@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 const ACCESS_TOKEN_KEY = 'access_token';
-
+export const USER_STORAGE_KEY = 'user';
 @Injectable({
   providedIn: 'root',
 })
@@ -50,11 +50,6 @@ export class AuthService {
     return localStorage.getItem(ACCESS_TOKEN_KEY) || '';
   }
 
-  getUser(): any {
-    const userString = localStorage.getItem('user');
-    return userString ? JSON.parse(userString) : null;
-  }
-
   isAuthenticated(): boolean {
     // Check if the access token exists and is not expired
     const accessToken = this.getAccessToken();
@@ -70,5 +65,38 @@ export class AuthService {
       body,
       environment.httpOptions
     );
+  }
+
+  setUser(user: any): void {
+    localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
+  }
+
+  removeUser(): void {
+    localStorage.removeItem(USER_STORAGE_KEY);
+  }
+
+  getUser(): any | null {
+    const userJson = localStorage.getItem(USER_STORAGE_KEY);
+    return userJson ? JSON.parse(userJson) : null;
+  }
+
+  getUserId(): number | null {
+    const user = this.getUser();
+    return user ? user.id : null;
+  }
+
+  getUserName(): string | null {
+    const user = this.getUser();
+    return user ? `${user.firstName} ${user.lastName}` : null;
+  }
+
+  getUserEmail(): string | null {
+    const user = this.getUser();
+    return user ? user.email : null;
+  }
+
+  getUserRole(): string | null {
+    const user = this.getUser();
+    return user ? user.role : null;
   }
 }

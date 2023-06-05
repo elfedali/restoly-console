@@ -1,4 +1,4 @@
-import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,10 +11,10 @@ export class HeaderComponent implements OnInit {
   isMenuCollapsed = true;
   currentUser: any;
 
-  constructor(private user: UserService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.currentUser = this.user.getUser();
+    this.currentUser = this.auth.getUser();
   }
 
   logout() {
