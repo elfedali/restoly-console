@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
 import { IPaginationMeta, IShopResponse } from '../models';
 
 /*

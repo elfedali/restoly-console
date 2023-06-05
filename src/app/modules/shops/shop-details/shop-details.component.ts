@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ShopsService } from './../../../_services/shops.service';
-import { ActivatedRoute } from '@angular/router';
 import { IShop } from 'src/app/models';
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { ShopsService } from '../../../_services/shop.service';
 
 @Component({
   selector: 'app-shop-details',

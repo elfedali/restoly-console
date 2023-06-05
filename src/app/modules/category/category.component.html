@@ -1,1 +1,70 @@
-<p>category works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-4">
+                <h4 class="mb-0">Categories</h4>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-title mb-0">This is the list of categories</p>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Slug</th>
+                                <th>is Enabled</th>
+                                <th>Position</th>
+                                <th>Created At</th>
+                                <th>Details</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let category of categories">
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.attributes.name }}</td>
+                                <td>{{ category.attributes.slug }}</td>
+                                <td>
+                                    <div *ngIf="category.attributes.isEnabled; else disabledBlock">
+                                        <span class="badge bg-success">Enabled</span>
+                                    </div>
+                                    <ng-template #disabledBlock>
+                                        <span class="badge bg-danger">Disabled</span>
+                                    </ng-template>
+                                </td>
+                                <td>{{ category.attributes.position }}</td>
+
+                                <td>{{ category.attributes.createdAt | date }}</td>
+
+                                <td>
+                                    <a [routerLink]="['/category', category.id]">Details</a>
+                                </td>
+                            </tr>
+                    </table>
+
+                    <div class="row">
+                        <div class="col d-flex align-items-end justify-content-end mt-3">
+
+
+                            <ngb-pagination [collectionSize]="pagination.total" [(page)]="pagination.currentPage"
+                                aria-label="Default pagination" (pageChange)="pageChanged($event)"
+                                [boundaryLinks]="true" [maxSize]="5" [rotate]="true"></ngb-pagination>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

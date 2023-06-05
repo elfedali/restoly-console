@@ -1,14 +1,15 @@
+import { Observable } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IPaginationMeta, IShopResponse } from '../models';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
+import { IPaginationMeta, IShopResponse } from '../models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CatgoriesService {
+export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getCateories(

@@ -2,7 +2,7 @@ import { IPaginationMeta, IShop, IUser } from 'src/app/models';
 
 import { Component, OnInit } from '@angular/core';
 
-import { ShopsService } from '../../_services/shops.service';
+import { ShopsService } from '../../_services/shop.service';
 
 @Component({
   selector: 'app-shops',
