@@ -1,16 +1,16 @@
+import { AuthService } from 'src/app/_services/auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from 'src/app/_services/auth.service';
-import { TokenService } from './../../_services/token.service';
-import { UserService } from './../../_services/user.service';
-import { IUser } from 'src/app/models';
+import { TokenService } from '../../../_services/token.service';
+import { UserService } from '../../../_services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styles: [],
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   checkIfUserIsLoggedIn(): void {
     if (this.token.getAccessToken()) {
       this.alreadyLoggedIn = true;
-      this.user = this.userService.getLoggedInUser();
+      this.user = this.userService.getUser();
     }
   }
 
@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleLoginSuccess(res: any): void {
-    this.token.setAccessToken(res.access_token);
-    this.userService.setLoggedInUser(res.data);
+    this.token.setAccessToken(res.access_token, 10);
+    this.userService.setUser(res.data);
     this.loading = false;
     this.router.navigate(['/']);
   }

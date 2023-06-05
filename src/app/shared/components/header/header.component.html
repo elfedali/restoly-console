@@ -1,29 +1,46 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" [routerLink]="'.'">Restoly</a>
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
         <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="shops" (click)="isMenuCollapsed = true"
-                        routerLinkActive="active active-link">Shops</a>
+                        routerLinkActive="active active-link">
+
+                        <i class="bi bi-shop"></i>
+                        Shops
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'logout'" (click)="isMenuCollapsed = true">Logout</a>
+                    <a class="nav-link" [routerLink]="'categories'" (click)="isMenuCollapsed = true">
+                        <i class="bi bi-list"></i>
+                        Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">About</a>
+                    <a class="nav-link" [routerLink]="'.'" (click)="isMenuCollapsed = true">
+                        <i class="bi bi-people"></i>
+                        Users</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" (click)="isMenuCollapsed = true">
-                        <div>
-                            <i class="bi bi-person-circle"></i> &nbsp;
-                            {{ currentUser.email }}
-                        </div>
-                    </a>
-                </li>
+
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="btn btn-outline-light" id="header-dropdown-user" ngbDropdownToggle>
+                        {{ currentUser.email }}
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="header-dropdown-user">
+
+                        <button ngbDropdownItem (click)="logout()">
+                            <i class="bi bi-box-arrow-right"></i> &nbsp;
+                            Logout
+
+
+
+                        </button>
+                        <button ngbDropdownItem>Something else is here</button>
+                    </div>
+                </div>
 
             </ul>
         </div>

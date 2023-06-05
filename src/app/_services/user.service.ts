@@ -1,44 +1,45 @@
 import { Injectable } from '@angular/core';
-import { IUser } from '../models';
+
+export const USER_STORAGE_KEY = 'user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private userStorageKey = 'user';
+  private userStorageKey = USER_STORAGE_KEY;
 
   constructor() {}
 
-  setLoggedInUser(user: IUser): void {
+  setUser(user: any): void {
     localStorage.setItem(this.userStorageKey, JSON.stringify(user));
   }
 
-  removeLoggedInUser(): void {
+  removeUser(): void {
     localStorage.removeItem(this.userStorageKey);
   }
 
-  getLoggedInUser(): IUser | null {
+  getUser(): any | null {
     const userJson = localStorage.getItem(this.userStorageKey);
     return userJson ? JSON.parse(userJson) : null;
   }
 
   getUserId(): number | null {
-    const user = this.getLoggedInUser();
+    const user = this.getUser();
     return user ? user.id : null;
   }
 
-  // getUserName(): string | null {
-  //   const user = this.getLoggedInUser();
-  //   return user ? `${user.first_name} ${user.last_name}` : null;
-  // }
+  getUserName(): string | null {
+    const user = this.getUser();
+    return user ? `${user.firstName} ${user.lastName}` : null;
+  }
 
-  // getUserEmail(): string | null {
-  //   const user = this.getLoggedInUser();
-  //   return user ? user.email : null;
-  // }
+  getUserEmail(): string | null {
+    const user = this.getUser();
+    return user ? user.email : null;
+  }
 
-  // getUserRole(): string | null {
-  //   const user = this.getLoggedInUser();
-  //   return user ? user.role : null;
-  // }
+  getUserRole(): string | null {
+    const user = this.getUser();
+    return user ? user.role : null;
+  }
 }

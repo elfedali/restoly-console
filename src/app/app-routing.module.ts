@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './_guard/auth.guard';
 import { DefaultComponent } from './layouts/default/default.component';
-import { PostsComponent } from './modules/posts/posts.component';
 import { SecurityComponent } from './layouts/security/security.component';
-import { LoginComponent } from './modules/login/login.component';
-import { RegisterComponent } from './modules/register/register.component';
-import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
-import { ServerErrorComponent } from './modules/server-error/server-error.component';
 import { AccessDeniedComponent } from './modules/access-denied/access-denied.component';
-import { NotFoundComponent } from './modules/not-found/not-found.component';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { LogoutComponent } from './modules/auth/logout/logout.component';
+import { CategoryDetailsComponent } from './modules/category/category-details/category-details.component';
+import { CategoryComponent } from './modules/category/category.component';
+import { ForgotPasswordComponent } from './modules/forgot-password/forgot-password.component';
 import { HomeComponent } from './modules/home/home.component';
-import { LogoutComponent } from './modules/logout/logout.component';
-import { ShopsComponent } from './modules/shops/shops.component';
+import { NotFoundComponent } from './modules/not-found/not-found.component';
+import { ServerErrorComponent } from './modules/server-error/server-error.component';
 import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
+import { ShopsComponent } from './modules/shops/shops.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        component: HomeComponent,
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
       {
         path: 'dashboard',
@@ -36,28 +40,31 @@ const routes: Routes = [
         component: ShopDetailsComponent,
       },
       {
-        path: 'posts',
-        component: PostsComponent,
-        
+        path: 'categories',
+        component: CategoryComponent,
+      },
+      {
+        path: 'categories/:id',
+        component: CategoryDetailsComponent,
       },
     ],
   },
   {
-    path: 'auth',
+    path: 'security',
     component: SecurityComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+      },
       {
         path: 'login',
         component: LoginComponent,
       },
-
       {
         path: 'logout',
         component: LogoutComponent,
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
       },
       {
         path: 'forgot-password',
