@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,6 +19,7 @@ import { RegisterComponent } from './modules/register/register.component';
 import { ServerErrorComponent } from './modules/server-error/server-error.component';
 import { ShopDetailsComponent } from './modules/shops/shop-details/shop-details.component';
 import { ShopsComponent } from './modules/shops/shops.component';
+import { TagsComponent } from './modules/tags/tags.component';
 import { UsersComponent } from './modules/users/users.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { UsersComponent } from './modules/users/users.component';
     CategoryComponent,
     CategoryDetailsComponent,
     UsersComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { UsersComponent } from './modules/users/users.component';
     SecurityModule,
     NgbModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
   ],
   providers: [bearerInterceptorProviders],

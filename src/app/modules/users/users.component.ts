@@ -4,7 +4,7 @@ import { IPaginationMeta } from 'src/app/models';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-category',
+  selector: 'app-users',
   templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit {
@@ -15,8 +15,10 @@ export class UsersComponent implements OnInit {
     perPage: 10,
   } as IPaginationMeta;
 
-  includes = 'owner,images';
+  // includes = 'owner,images';
   included: any;
+
+  searchTerm: any;
 
   constructor(private userService: UserService) {}
 
@@ -25,20 +27,34 @@ export class UsersComponent implements OnInit {
   }
 
   fetchUsers(): void {
-    this.userService.getCateories(this.pagination).subscribe({
-      next: (res) => {
-        this.handlefetchSuccess(res);
-      },
-      error: (error) => {},
-    });
+    this.userService
+      .getUsers(this.pagination, undefined, this.searchTerm)
+      .subscribe({
+        next: (res) => {
+          this.handlefetchSuccess(res);
+        },
+        error: (error) => {},
+      });
+  }
+
+  pageChanged($event: number) {
+    this.pagination.currentPage = $event;
+    this.fetchUsers();
+  }
+
+  search() {
+    this.userService
+      .getUsers(this.pagination, undefined, this.searchTerm)
+      .subscribe({
+        next: (res) => {
+          this.handlefetchSuccess(res);
+        },
+        error: (error) => {},
+      });
   }
 
   handlefetchSuccess(res: any) {
     this.users = res.data;
     this.pagination = res.meta.page;
-  }
-  pageChanged($event: number) {
-    this.pagination.currentPage = $event;
-    this.fetchUsers();
   }
 }

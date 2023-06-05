@@ -1,21 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="mb-4 d-flex justify-content-between align-items-center">
-                <h4 class="mb-0">Shops</h4>
-                <div class="searsh">
-
-                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm"
-                        (ngModelChange)="search()">
-                    <!-- TODO:: search loading -->
-                </div>
-
-
+            <div class="mb-4">
+                <h4 class="mb-0">Tags</h4>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <p class="card-title mb-0">This is the list of shops</p>
+                    <p class="card-title mb-0">This is the list of tags</p>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -23,38 +15,33 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>is Enabled by user</th>
-                                <th>is Approved by Restoly </th>
+                                <th>Slug</th>
+                                <th>is Enabled</th>
+                                <th>Position</th>
                                 <th>Created At</th>
-                                <th>Owner</th>
                                 <th>Details</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let shop of shops">
-                                <td>{{ shop.id }}</td>
-                                <td>{{ shop.attributes.name }}</td>
+                            <tr *ngFor="let tag of tags">
+                                <td>{{ tag.id }}</td>
+                                <td>{{ tag.attributes.name }}</td>
+                                <td>{{ tag.attributes.slug }}</td>
                                 <td>
-                                    <div *ngIf="shop.attributes.isEnabled; else disabledBlock">
+                                    <div *ngIf="tag.attributes.isEnabled; else disabledBlock">
                                         <span class="badge bg-success">Enabled</span>
                                     </div>
                                     <ng-template #disabledBlock>
                                         <span class="badge bg-danger">Disabled</span>
                                     </ng-template>
                                 </td>
-                                <td>
-                                    <div *ngIf="!shop.attributes.isApproved; else approvedBlock">
-                                        <span class="badge bg-warning">Not Approved</span>
-                                    </div>
-                                    <ng-template #approvedBlock>
-                                        <span class="badge bg-success">Approved</span>
-                                    </ng-template>
+                                <td>{{ tag.attributes.position }}</td>
 
-                                </td>
-                                <td>{{ shop.attributes.createdAt | date }}</td>
-                                <td>{{ getOwner(shop) }}</td>
+                                <td>{{ tag.attributes.createdAt | date }}</td>
+
                                 <td>
-                                    <a [routerLink]="['/shops', shop.id]">Details</a>
+                                    <a [routerLink]="['/tag', tag.id]">Details</a>
                                 </td>
                             </tr>
                     </table>

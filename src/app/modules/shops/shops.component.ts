@@ -9,6 +9,8 @@ import { ShopsService } from '../../_services/shop.service';
   templateUrl: './shops.component.html',
 })
 export class ShopsComponent implements OnInit {
+  searchTerm: any;
+
   shops: IShop[] = [];
   pagination: IPaginationMeta = {
     currentPage: 1,
@@ -25,22 +27,19 @@ export class ShopsComponent implements OnInit {
   }
 
   fetchShops(): void {
-    this.shopsService.getShops(this.pagination, this.includes).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.shops = res.data;
-        this.pagination = res.meta.page;
-        this.included = res.included;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.shopsService
+      .getShops(this.pagination, this.includes, this.searchTerm)
+      .subscribe({
+        next: (res) => {
+          this.handlefetchSuccess(res);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   pageChanged($event: number) {
-    console.log($event);
-
     this.pagination.currentPage = $event;
     this.fetchShops();
   }
@@ -52,5 +51,21 @@ export class ShopsComponent implements OnInit {
       return owner.attributes.firstName + ' ' + owner.attributes.lastName;
     }
     return 'No Owner';
+  }
+
+  search() {
+    this.shopsService
+      .getShops(this.pagination, this.includes, this.searchTerm)
+      .subscribe({
+        next: (res) => {
+          this.handlefetchSuccess(res);
+        },
+      });
+  }
+
+  handlefetchSuccess(res: any) {
+    this.shops = res.data;
+    this.pagination = res.meta.page;
+    this.included = res.included;
   }
 }

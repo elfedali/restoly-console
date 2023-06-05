@@ -1,8 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="mb-4">
+            <div class="mb-4 d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Users</h4>
+
+                <div class="searsh">
+
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm"
+                        (ngModelChange)="search()">
+                    <!-- TODO:: search loading -->
+                </div>
             </div>
 
             <div class="card">
@@ -15,6 +22,10 @@
                             <tr>
                                 <th>Id</th>
                                 <th>email</th>
+                                <th>Phone number</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Role</th>
 
                                 <th>Is enabled</th>
 
@@ -26,7 +37,30 @@
                             <tr *ngFor="let user of users">
                                 <td>{{ user.id }}</td>
 
-                                <td>{{ user.attributes.email }}</td>
+                                <td>
+                                    <!-- TODO:: Avatar image not found -->
+                                    <!-- <img *ngIf="user.attributes.photo" [src]="user.attributes.photo" alt="avatar"
+                                        class="img-circle img-size-32 mr-2"> -->
+                                    <span>{{ user.attributes.email }}</span>
+                                </td>
+                                <td *ngIf="user.attributes.phoneNumber; else noPhoneNumber">{{
+                                    user.attributes.phoneNumber }}</td>
+                                <ng-template #noPhoneNumber>
+                                    <td>-</td>
+                                </ng-template>
+                                <td *ngIf="user.attributes.firstName; else noFirstName">{{ user.attributes.firstName }}
+                                </td>
+                                <ng-template #noFirstName>
+                                    <td>-</td>
+                                </ng-template>
+                                <td *ngIf="user.attributes.lastName; else noLastName">{{ user.attributes.lastName }}
+                                </td>
+                                <ng-template #noLastName>
+                                    <td>-</td>
+                                </ng-template>
+
+                                <td>{{ user.attributes.role }}</td>
+
                                 <td>
                                     <div *ngIf="user.attributes.isEnabled; else disabledBlock">
                                         <span class="badge bg-success">Enabled</span>

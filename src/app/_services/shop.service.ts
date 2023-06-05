@@ -6,87 +6,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { IPaginationMeta, IShopResponse } from '../models';
 
-/*
-{
-    "meta": {
-        "page": {
-            "currentPage": 1,
-            "from": 1,
-            "lastPage": 214,
-            "perPage": 1,
-            "to": 1,
-            "total": 214
-        }
-    },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "links": {
-        "first": "http://localhost:8000/api/v1/shops?page%5Bnumber%5D=1&page%5Bsize%5D=1",
-        "last": "http://localhost:8000/api/v1/shops?page%5Bnumber%5D=214&page%5Bsize%5D=1",
-        "next": "http://localhost:8000/api/v1/shops?page%5Bnumber%5D=2&page%5Bsize%5D=1"
-    },
-    "data": [
-        {
-            "type": "shops",
-            "id": "1",
-            "attributes": {
-                "name": "Hodkiewicz-Wolff",
-                "slug": "hodkiewicz-wolff",
-                "description": "Unde ab nemo qui. Mollitia hic illo vel aut provident aliquam autem. Sit qui natus quis sed aspernatur impedit nesciunt enim.",
-                "phoneNumber": null,
-                "address": null,
-                "city": null,
-                "zipCode": null,
-                "country": null,
-                "logoPhoto": null,
-                "coverPhoto": null,
-                "isEnabled": true,
-                "isApproved": true,
-                "approvedAt": "1986-12-01T07:22:00.000000Z",
-                "createdAt": "2023-05-28T14:41:42.000000Z",
-                "updatedAt": "2023-05-28T14:41:42.000000Z"
-            },
-            "relationships": {
-                "owner": {
-                    "links": {
-                        "related": "http://localhost:8000/api/v1/shops/1/owner",
-                        "self": "http://localhost:8000/api/v1/shops/1/relationships/owner"
-                    }
-                },
-                "categories": {
-                    "links": {
-                        "related": "http://localhost:8000/api/v1/shops/1/categories",
-                        "self": "http://localhost:8000/api/v1/shops/1/relationships/categories"
-                    }
-                },
-                "tags": {
-                    "links": {
-                        "related": "http://localhost:8000/api/v1/shops/1/tags",
-                        "self": "http://localhost:8000/api/v1/shops/1/relationships/tags"
-                    }
-                },
-                "images": {
-                    "links": {
-                        "related": "http://localhost:8000/api/v1/shops/1/images",
-                        "self": "http://localhost:8000/api/v1/shops/1/relationships/images"
-                    }
-                },
-                "reviews": {
-                    "links": {
-                        "related": "http://localhost:8000/api/v1/shops/1/reviews",
-                        "self": "http://localhost:8000/api/v1/shops/1/relationships/reviews"
-                    }
-                }
-            },
-            "links": {
-                "self": "http://localhost:8000/api/v1/shops/1"
-            }
-        }
-    ]
-}
-*/
-
 @Injectable({
   providedIn: 'root',
 })
@@ -95,7 +14,9 @@ export class ShopsService {
 
   getShops(
     pagination?: IPaginationMeta,
-    includes?: any
+    includes?: any,
+    filters?: any,
+    sort?: any
   ): Observable<IShopResponse> {
     let url = environment.API_URL + 'shops';
     if (pagination) {
@@ -105,6 +26,13 @@ export class ShopsService {
     if (includes) {
       url += '&include=' + includes;
     }
+    if (filters) {
+      url += '&filter[nameLike]=' + filters;
+    }
+    if (sort) {
+      url += '&sort=' + sort;
+    }
+    console.log(url);
     return this.http.get<any>(url);
   }
 

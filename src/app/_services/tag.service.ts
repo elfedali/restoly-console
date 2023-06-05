@@ -9,16 +9,14 @@ import { IPaginationMeta, IShopResponse } from '../models';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class TagService {
   constructor(private http: HttpClient) {}
 
-  getUsers(
+  getTags(
     pagination?: IPaginationMeta,
-    includes?: any,
-    filters?: any,
-    sort?: any
+    includes?: any
   ): Observable<IShopResponse> {
-    let url = environment.API_URL + 'users';
+    let url = environment.API_URL + 'tags';
     if (pagination) {
       url += '?page[number]=' + pagination.currentPage;
       url += '&page[size]=' + pagination.perPage;
@@ -26,16 +24,10 @@ export class UserService {
     if (includes) {
       url += '&include=' + includes;
     }
-    if (filters) {
-      url += '&filter[emailLike]=' + filters;
-    }
-    if (sort) {
-      url += '&sort=' + sort;
-    }
     return this.http.get<any>(url);
   }
 
-  getUser(id: number): Observable<any> {
-    return this.http.get<any>(environment.API_URL + 'users/' + id);
+  getTag(id: number): Observable<any> {
+    return this.http.get<any>(environment.API_URL + 'tags/' + id);
   }
 }
